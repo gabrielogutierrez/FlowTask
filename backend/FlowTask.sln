@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowTask.Api", "FlowTask.Api\FlowTask.Api.csproj", "{0ACF9AF4-485D-4D66-A2A8-08C5F1ACFF01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowTask.Api.Tests", "FlowTask.Api.Tests\FlowTask.Api.Tests.csproj", "{F074FD70-24E3-4B26-8454-B77F00BBA5E3}"
+EndProject
+Global
+ GlobalSection(SolutionConfigurationPlatforms) = preSolution
+  Debug|Any CPU = Debug|Any CPU
+  Release|Any CPU = Release|Any CPU
+ EndGlobalSection
+ GlobalSection(ProjectConfigurationPlatforms) = postSolution
+  {0ACF9AF4-485D-4D66-A2A8-08C5F1ACFF01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+  {0ACF9AF4-485D-4D66-A2A8-08C5F1ACFF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+  {0ACF9AF4-485D-4D66-A2A8-08C5F1ACFF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+  {0ACF9AF4-485D-4D66-A2A8-08C5F1ACFF01}.Release|Any CPU.Build.0 = Release|Any CPU
+  {F074FD70-24E3-4B26-8454-B77F00BBA5E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+  {F074FD70-24E3-4B26-8454-B77F00BBA5E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+  {F074FD70-24E3-4B26-8454-B77F00BBA5E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+  {F074FD70-24E3-4B26-8454-B77F00BBA5E3}.Release|Any CPU.Build.0 = Release|Any CPU
+ EndGlobalSection
+EndGlobal
