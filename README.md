@@ -2,7 +2,7 @@
 
 > Aplicativo full stack de produtividade com autenticação segura e organização de tarefas.
 
-[![CI](https://github.com/GeGekuuhaku/FlowTask/actions/workflows/ci.yml/badge.svg)](https://github.com/GeGekuuhaku/FlowTask/actions/workflows/ci.yml)
+[![CI](https://github.com/gabrielogutierrez/FlowTask/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrielogutierrez/FlowTask/actions/workflows/ci.yml)
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white)
 ![.NET](https://img.shields.io/badge/.NET_8-512BD4?logo=dotnet&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
