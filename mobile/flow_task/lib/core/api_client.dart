@@ -7,6 +7,17 @@ class ApiClient {
   dynamic decode(http.Response r) { if(r.statusCode>=400) throw Exception(r.body); return r.body.isEmpty ? null : jsonDecode(r.body); }
   Future<dynamic> get(String path) async => decode(await http.get(Uri.parse('$baseUrl$path'),headers:headers));
   Future<dynamic> post(String path,Map<String,dynamic> body) async => decode(await http.post(Uri.parse('$baseUrl$path'),headers:headers,body:jsonEncode(body)));
+  Future<dynamic> put(
+  String path,
+  Map<String, dynamic> body,
+) async =>
+    decode(
+      await http.put(
+        Uri.parse('$baseUrl$path'),
+        headers: headers,
+        body: jsonEncode(body),
+      ),
+    );
   Future<dynamic> patch(String path) async => decode(await http.patch(Uri.parse('$baseUrl$path'),headers:headers));
   Future<void> delete(String path) async => decode(await http.delete(Uri.parse('$baseUrl$path'),headers:headers));
 }

@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using FlowTask.Api.Data;
 using FlowTask.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,7 +11,14 @@ var connection = builder.Configuration.GetConnectionString("Default")!;
 builder.Services.AddDbContext<AppDbContext>(o => o.UseMySql(connection, ServerVersion.AutoDetect(connection)));
 builder.Services.AddScoped<PasswordService>();
 builder.Services.AddScoped<TokenService>();
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter()
+        );
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(o => o.AddDefaultPolicy(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
