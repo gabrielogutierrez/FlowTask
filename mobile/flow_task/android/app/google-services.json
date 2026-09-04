@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "993677477430",
+    "project_id": "flowtask-76a34",
+    "storage_bucket": "flowtask-76a34.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993677477430:android:37b20e6d9de8d2a8023a97",
+        "android_client_info": {
+          "package_name": "com.example.flow_task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA0sLhb7Q3wZ-RmZOCrQ7mzk7SJWQ3GKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993677477430:android:400309047522bbbf023a97",
+        "android_client_info": {
+          "package_name": "com.gabrielgutierrez.flowtask"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA0sLhb7Q3wZ-RmZOCrQ7mzk7SJWQ3GKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

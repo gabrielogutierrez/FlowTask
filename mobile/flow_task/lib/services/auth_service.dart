@@ -1,39 +1,56 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../core/api_client.dart';
-
 class AuthService {
-  AuthService(this.api);
+  AuthService();
 
-  final ApiClient api;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   String? userName;
 
+  User? get currentUser => _firebaseAuth.currentUser;
+
   Future<bool> restore() async {
+    final user = _firebaseAuth.currentUser;
+
+    if (user == null) {
+      userName = null;
+      return false;
+    }
+
     final prefs = await SharedPreferences.getInstance();
 
-    api.token = prefs.getString('token');
-    userName = prefs.getString('name');
+    userName =
+        user.displayName ??
+        prefs.getString('name') ??
+        user.email?.split('@').first;
 
-    return api.token != null;
+    return true;
   }
 
   Future<void> login(
     String email,
     String password,
   ) async {
-    final data = await api.post(
-      '/auth/login',
-      {
-        'email': email,
-        'password': password,
-      },
-    ) as Map<String, dynamic>;
-
-    await _save(
-      data['token'] as String,
-      data['name'] as String,
+    final credential =
+        await _firebaseAuth.signInWithEmailAndPassword(
+      email: email.trim(),
+      password: password,
     );
+
+    final user = credential.user;
+
+    if (user == null) {
+      throw Exception('Não foi possível entrar.');
+    }
+
+    userName =
+        user.displayName ??
+        user.email?.split('@').first ??
+        'Usuário';
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('name', userName!);
   }
 
   Future<void> register(
@@ -41,41 +58,33 @@ class AuthService {
     String email,
     String password,
   ) async {
-    final data = await api.post(
-      '/auth/register',
-      {
-        'name': name,
-        'email': email,
-        'password': password,
-      },
-    ) as Map<String, dynamic>;
-
-    await _save(
-      data['token'] as String,
-      data['name'] as String,
+    final credential =
+        await _firebaseAuth.createUserWithEmailAndPassword(
+      email: email.trim(),
+      password: password,
     );
-  }
 
-  Future<void> _save(
-    String token,
-    String name,
-  ) async {
-    api.token = token;
-    userName = name;
+    final user = credential.user;
+
+    if (user == null) {
+      throw Exception('Não foi possível criar a conta.');
+    }
+
+    await user.updateDisplayName(name.trim());
+    await user.reload();
+
+    userName = name.trim();
 
     final prefs = await SharedPreferences.getInstance();
-
-    await prefs.setString('token', token);
-    await prefs.setString('name', name);
+    await prefs.setString('name', userName!);
   }
 
   Future<void> logout() async {
-    api.token = null;
+    await _firebaseAuth.signOut();
+
     userName = null;
 
     final prefs = await SharedPreferences.getInstance();
-
-    await prefs.remove('token');
     await prefs.remove('name');
   }
 }

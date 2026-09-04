@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'core/api_client.dart';
+import 'services/notification_service.dart';
 import 'screens/auth_screen.dart';
 import 'screens/task_list_screen.dart';
 import 'services/auth_service.dart' as auth_service;
 import 'services/task_service.dart';
 
-void main() {
-  runApp(const FlowTaskApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
+await NotificationService.instance.initialize();
+
+runApp(const FlowTaskApp());
 }
 
 class FlowTaskApp extends StatefulWidget {
@@ -18,10 +25,10 @@ class FlowTaskApp extends StatefulWidget {
 }
 
 class _FlowTaskAppState extends State<FlowTaskApp> {
-  final api = ApiClient();
 
-  late final auth = auth_service.AuthService(api);
-  late final tasks = TaskService(api);
+
+  late final auth = auth_service.AuthService();
+  late final tasks = TaskService();
 
   bool? signedIn;
 bool darkMode = false;
