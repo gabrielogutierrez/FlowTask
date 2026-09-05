@@ -1,13 +1,16 @@
 # FlowTask ✅
 
-> Aplicativo full stack de produtividade com autenticação segura, organização de tarefas e dashboard de acompanhamento.
+> Um planner mobile moderno para organizar tarefas, acompanhar o dia e transformar pequenas pendências em progresso visível.
 
 [![CI](https://github.com/gabrielogutierrez/FlowTask/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrielogutierrez/FlowTask/actions/workflows/ci.yml)
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white)
-![.NET](https://img.shields.io/badge/.NET_8-512BD4?logo=dotnet&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black)
+![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)
+![Material 3](https://img.shields.io/badge/Material_3-6750A4?logo=materialdesign&logoColor=white)
 
-O **FlowTask** é uma aplicação mobile full stack construída para demonstrar um fluxo real de ponta a ponta: aplicativo Flutter, API REST em ASP.NET Core, autenticação JWT, persistência em MySQL, testes automatizados e CI no GitHub Actions.
+O **FlowTask** é um aplicativo de produtividade desenvolvido em Flutter com foco em uma experiência leve, visual e prática. A versão atual utiliza **Firebase Authentication** para autenticação e **Cloud Firestore** para sincronização das tarefas em tempo real entre sessões.
+
+O projeto começou como uma aplicação full stack com ASP.NET Core, MySQL e JWT. Esse backend continua no repositório como parte da evolução técnica do projeto, enquanto o aplicativo mobile atual segue uma arquitetura baseada em Firebase.
 
 ## 📸 Preview
 
@@ -21,54 +24,108 @@ O **FlowTask** é uma aplicação mobile full stack construída para demonstrar 
   <img src="docs/screenshots/edit-task-dark.png" width="260" alt="Edição de tarefa" />
 </p>
 
-## ✨ Destaques
+> As telas do aplicativo continuam evoluindo. Novos screenshots serão adicionados conforme o design atual for consolidado.
 
-- 🔐 Cadastro e login com autenticação JWT
-- 👤 Saudação personalizada com o nome do usuário
-- ✅ CRUD completo de tarefas por usuário
-- 📝 Título, descrição, categoria, prioridade e data de vencimento
+## ✨ Funcionalidades atuais
+
+- 🔐 Cadastro, login e sessão com Firebase Authentication
+- ☁️ Tarefas armazenadas no Cloud Firestore
+- ⚡ Atualização das tarefas em tempo real
+- ✅ Criação, edição, conclusão, reabertura e exclusão de tarefas
+- 📝 Título, descrição, categoria, prioridade e data
+- ⏰ Horário personalizado de lembrete
+- 🔔 Notificações locais agendadas no dispositivo
+- 📅 Home em estilo planner com faixa de dias
 - 🔎 Busca por tarefas
-- 🎯 Filtros por tarefas pendentes e concluídas
-- 📊 Dashboard com percentual geral de conclusão
-- 📅 Indicadores de tarefas para hoje
-- ⚠️ Identificação de tarefas atrasadas
-- 🚩 Contador de tarefas de alta prioridade
-- 🎨 Prioridades com identificação visual por cores
-- 🌙 Modo claro e escuro com preferência salva
-- ✏️ Edição completa das tarefas
-- 👆 Conclusão rápida por checkbox
-- 🗑️ Exclusão por gesto de deslizar
-- 📱 Interface responsiva com Material 3
-- 🐳 Docker Compose para infraestrutura local
-- 📚 Swagger para documentação da API
-- 🧪 Testes automatizados no backend e no aplicativo
-- ⚙️ CI com GitHub Actions
+- 🎯 Filtros por todas, pendentes e concluídas
+- 📊 Progresso geral de conclusão
+- 🗂️ Histórico de tarefas concluídas
+- ↩️ Restauração de tarefas pelo histórico
+- 🌙 Modo claro e escuro com preferência persistente
+- 👤 Tela de perfil e configurações
+- 🖼️ Foto de perfil local no dispositivo
+- 👁️ Opção para mostrar ou ocultar tarefas concluídas
+- ⏱️ Horário padrão de lembrete configurável
+- 🎨 Interface baseada em Material 3
+- 📱 Layout pensado para uso mobile
+
+## 🧪 Em desenvolvimento
+
+- 📆 Sincronização de tarefas com o calendário do celular
+- 🧩 Widget para tela inicial e tela de bloqueio
+- 🔁 Tarefas recorrentes
+- 🗓️ Calendário mensal completo dentro do FlowTask
 
 ## 📱 Experiência do usuário
 
-A tela principal funciona como um pequeno painel de produtividade. O usuário consegue visualizar o progresso geral, quantidade de tarefas pendentes e concluídas, compromissos do dia, itens atrasados e tarefas de alta prioridade.
+A tela principal foi transformada em um planner diário. O usuário pode navegar pelos próximos dias, visualizar quantas tarefas existem em cada data, acompanhar o progresso geral e criar rapidamente uma tarefa já vinculada ao dia selecionado.
 
-As tarefas podem ser criadas e editadas com categoria, prioridade, descrição e data de vencimento. A interface também oferece busca, filtros rápidos e tema claro/escuro persistente.
+Quando um dia está vazio, o FlowTask mostra um estado visual mais leve com um atalho direto para adicionar uma nova tarefa. Busca, filtros e preferências completam a experiência sem exigir navegação excessiva.
 
-## 🏗️ Arquitetura
+## 🏗️ Arquitetura atual do aplicativo
 
 ```mermaid
 flowchart LR
-  A[Flutter Mobile] -->|HTTP + JWT| B[ASP.NET Core API]
-  B --> C[(MySQL)]
+  A[Flutter Mobile] --> B[Firebase Authentication]
+  A --> C[Cloud Firestore]
+  A --> D[Notificações locais]
+  A -. integração em desenvolvimento .-> E[Calendário do dispositivo]
 ```
+
+O repositório também mantém o backend original em ASP.NET Core e MySQL, usado nas primeiras versões do FlowTask.
 
 ## 🧰 Tecnologias
 
-| Camada | Tecnologias |
+| Área | Tecnologias |
 |---|---|
-| Mobile | Flutter, Dart, Material 3, SharedPreferences |
-| Backend | C#, ASP.NET Core 8, Entity Framework Core |
-| Dados | MySQL 8 |
-| Qualidade | xUnit, Flutter Test, GitHub Actions |
-| Segurança | JWT, PBKDF2, isolamento de dados por usuário |
+| Mobile | Flutter, Dart, Material 3 |
+| Autenticação | Firebase Authentication |
+| Dados atuais | Cloud Firestore |
+| Preferências locais | SharedPreferences |
+| Notificações | flutter_local_notifications |
+| Perfil | image_picker |
+| Calendário | device_calendar_plus |
+| Backend original | C#, ASP.NET Core 8, Entity Framework Core |
+| Banco original | MySQL 8 |
+| Qualidade | Flutter Test, xUnit, GitHub Actions |
 
-## ▶️ Como executar
+## 📂 Estrutura principal
+
+```text
+FlowTask/
+├── mobile/
+│   └── flow_task/
+│       ├── lib/
+│       │   ├── models/
+│       │   ├── screens/
+│       │   └── services/
+│       └── android/
+├── backend/
+├── docs/
+└── README.md
+```
+
+## ▶️ Executando o aplicativo
+
+### Requisitos
+
+- Flutter instalado
+- Android Studio ou emulador Android configurado
+- Projeto Firebase configurado para Android
+
+### Rodar o mobile
+
+```bash
+cd mobile/flow_task
+flutter pub get
+flutter run
+```
+
+Para utilizar Firebase em outro ambiente, configure o projeto Firebase correspondente e o arquivo `google-services.json` do aplicativo Android.
+
+## 🖥️ Backend original
+
+O backend ASP.NET Core permanece disponível no repositório como parte da versão full stack original.
 
 ### Banco de dados
 
@@ -84,39 +141,27 @@ dotnet restore
 dotnet run --project FlowTask.Api
 ```
 
-A documentação Swagger fica disponível em `/swagger` no ambiente de desenvolvimento.
+A documentação Swagger pode ser acessada em `/swagger` no ambiente de desenvolvimento.
 
-### Aplicativo
+## 🗺️ Roadmap
 
-```bash
-cd mobile/flow_task
-flutter pub get
-flutter run
-```
+- [x] Firebase Authentication
+- [x] Cloud Firestore em tempo real
+- [x] Notificações locais
+- [x] Perfil e configurações
+- [x] Histórico de tarefas
+- [x] Home estilo planner
+- [ ] Finalizar sincronização com o calendário do dispositivo
+- [ ] Criar tarefas recorrentes
+- [ ] Criar calendário mensal completo
+- [ ] Criar widgets para Android e iOS
+- [ ] Recuperação de senha
+- [ ] Revisar cobertura de testes
+- [ ] Preparar builds para distribuição
 
-No emulador Android, o aplicativo usa `http://10.0.2.2:5000/api`. Para executar em outro dispositivo, ajuste `ApiClient.baseUrl`.
+## 🚧 Status
 
-## 🔌 Endpoints principais
-
-| Método | Endpoint | Função |
-|---|---|---|
-| POST | `/api/auth/register` | Criar conta |
-| POST | `/api/auth/login` | Entrar |
-| GET | `/api/tasks` | Listar, pesquisar e filtrar |
-| POST | `/api/tasks` | Criar tarefa |
-| PUT | `/api/tasks/{id}` | Editar tarefa |
-| PATCH | `/api/tasks/{id}/toggle` | Concluir ou reabrir |
-| DELETE | `/api/tasks/{id}` | Excluir tarefa |
-
-## 🚀 Próximos passos
-
-- Notificações locais de vencimento
-- Sincronização offline
-- Recuperação de senha
-- Perfil e configurações do usuário
-- Ampliação dos testes de integração
-- Publicação da API
-- Build Android para distribuição
+O **FlowTask está em desenvolvimento ativo**. A interface, integrações e experiência de uso continuam sendo refinadas a cada versão.
 
 ---
 
